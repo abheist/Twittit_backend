@@ -1,5 +1,8 @@
-from django.http import HttpResponse
+from allauth.socialaccount.providers.twitter.views import TwitterOAuthAdapter
+from rest_auth.registration.views import SocialLoginView
+from rest_auth.social_serializers import TwitterLoginSerializer
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+class TwitterLogin(SocialLoginView):
+    serializer_class = TwitterLoginSerializer
+    adapter_class = TwitterOAuthAdapter

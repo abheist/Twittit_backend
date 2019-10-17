@@ -1,7 +1,9 @@
+from django.conf.urls import url
 from django.urls import path
 
+from twittit.views import TwitterLogin
 from . import views
 
 urlpatterns = [
-    path('', views.index, name="index")
+    url(r'^rest-auth/twitter/$', TwitterLogin.as_view(), name='twitter_login')
 ]
