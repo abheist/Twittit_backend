@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+
 from secrets import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -40,13 +41,13 @@ INSTALLED_APPS = [
     'twittit.apps.TwittitConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     'rest_auth',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'rest_auth.registration',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
 ]
 
@@ -55,11 +56,19 @@ SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# CORS_ORIGIN_ALLOW_ALL=True
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
 ]
 
 ROOT_URLCONF = 'twittit_backend.urls'
